@@ -1,0 +1,118 @@
+= Resume Generation using Bootstrap Template
+
+This is my attempt to help you generate a personal web page like https://startbootstrap.com/previews/resume/ for yourselves and host it on https://pages.github.io/ for free.
+
+I have forked https://github.com/BlackrockDigital/startbootstrap-resume and using it as the base, so I am retaining their license.
+
+For your personal information, the data from your LinkedIn profile is be used. The steps in the follow sections will help you download your profile data from LinkedIn.
+
+After you download your personal information from LinkedIn, it then is converted to a JSON format confirming the standard https://jsonresume.org/schema/
+
+The script provided here uses a https://jinja.palletsprojects.com/en/2.11.x/[Jinja2] template and your JSON resume to generate a HTML page that looks similar to https://startbootstrap.com/previews/resume/.
+
+The generated HTML file along with other files will be added to your https://pages.github.io repository
+
+
+== Prerequistes
+
+* Python3
+* Linux/Unix
+* Git
+* LinkedIn profile
+* Github profile
+
+== Clone This Repository
+
+Clone this repository and change the working directory to it.
+
+```
+git clone https://github.com/vamshikr/startbootstrap-resume && cd startbootstrap-resume
+```
+
+
+== Generate JSON resume
+This section explains the steps to download your personal information from LinkedIn and convert it to the JSON format
+
+=== Download your LinkedIn profile
+
+* Login to Linkedin
+
+* Select the menu item `Me` >>  `Settings & Privacy`
+
+* In the `Settings & Privacy` page, select the `Privacy` tab
+
+* Goto `How LinkedIn uses your data` >> `Get a copy of your data`
+
+* Select `Download larger data archive, including connections, contacts, and your account history`
+
+* Click on `Request Archive` and wait for an email from LinkedIn with the download link
+
+
+Use the link emailed to you by LinkedIn and download the archive. The archive is in `zip` file format
+
+=== Clean the archive (Optional)
+
+The archive that you obtained from LinkedIn has extra personal data related to you other than your profile.
+
+Since an external web-service to create the JSON resume, you may want to keep only the required data in the archive.
+
+A bash script `clean_zip.sh` provided here can be used to create a copy of the archive with only  the necessary data for the resume.
+```
+./clean_zip.sh ~/Download/Basic_LinkedInDataExport_02-19-2020.zip
+```
+
+WARNING: The `clean_zip.sh` script will delete the extra personal data from the archive, so please make a copy of the archive before running it
+
+=== Generate JSON resume
+
+* Goto https://jmperezperez.com/linkedin-to-json-resume/[LinkedIn to Json Résumé]
+
+* Upload the `zip` archive with your LinkedIn data
+
+* Save the generated JSON file in the current working directory as `resume.json`
+
+== Generate HTML
+Prerequistes: JSON resume is available
+
+=== Create Virtual Environment and Install Requirements
+
+```
+python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt
+```
+
+=== Run `generate.py` script
+When you have the JSON resume ready, run the `generate.py` script
+
+```
+./generate.py resume.json
+```
+
+The `generate.py` file validates your JSON resume and uses the `jinja2` template in `jinja2/templates/index.j2` file and generates the HTML and writes it into `index.html` file
+
+If the `generate.py` script exits successfully, it creates an `index.html` file in the current working directory.
+
+Open the `index.html` file in a browser and verify how it renders.
+
+
+== Upload to https://pages.github.io/
+
+* Create an account on https://github.com[GitHub] if you don't already have it.
+
+* Follow the instructions on https://pages.github.com/#user-site and create a repository by the name `<username>.github.io`, wherein `<username>` is your github account name. While creating the repository, do not select **initialize the repository with README**, nor add any license or `.gitignore` file
+
+WARNING: Do not select **initialize the repository with README**, nor add any license or `.gitignore` file
+
+* Add the GitHub repository as the remote origin
+```
+git remote remove origin && git remote add origin git@github.com:<username>.github.io
+```
+
+* Push to `<username>.github.io`
+```
+git push origin master
+```
+
+
+=== Pitfalls
+
+In most cases it is the JSON resume structure. Manually examine it and edit it such that it confirms to https://jsonresume.org/schema/
