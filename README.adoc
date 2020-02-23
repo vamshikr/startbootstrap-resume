@@ -1,4 +1,4 @@
-= Resume Generation using Bootstrap Template
+= Generate Resume for Github Pages using Bootstrap Resume Template
 
 This is my attempt to help you generate a personal web page like https://startbootstrap.com/previews/resume/ for yourselves and host it on https://pages.github.io/ for free.
 
