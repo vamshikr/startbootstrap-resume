@@ -4,13 +4,13 @@ This is my attempt to help you generate a personal web page like https://startbo
 
 I have forked https://github.com/BlackrockDigital/startbootstrap-resume and using it as the base, so I am retaining their license.
 
-For your personal information, the data from your LinkedIn profile is be used. The steps in the follow sections will help you download your profile data from LinkedIn.
+For your personal information, the data from your LinkedIn profile is used. The steps in the following sections will help you download your profile data from LinkedIn.
 
-After you download your personal information from LinkedIn, it then is converted to a JSON format confirming the standard https://jsonresume.org/schema/
+After you download your personal information from LinkedIn, it is converted to a JSON format confirming the standard https://jsonresume.org/schema/
 
-The script provided here uses a https://jinja.palletsprojects.com/en/2.11.x/[Jinja2] template and your JSON resume to generate a HTML page that looks similar to https://startbootstrap.com/previews/resume/.
+Once the resume is in the JSON format, the script provided here uses a https://jinja.palletsprojects.com/en/2.11.x/[Jinja2] template and your JSON resume to generate a HTML page that looks similar to https://startbootstrap.com/previews/resume/.
 
-The generated HTML file along with other files will be added to your https://pages.github.io repository
+The generated HTML file along with other files has to added to your https://pages.github.io repository
 
 
 == Prerequistes
@@ -20,6 +20,7 @@ The generated HTML file along with other files will be added to your https://pag
 * Git
 * LinkedIn profile
 * Github profile
+* node and npm (Optional)
 
 == Clone This Repository
 
@@ -54,9 +55,9 @@ Use the link emailed to you by LinkedIn and download the archive. The archive is
 
 The archive that you obtained from LinkedIn has extra personal data related to you other than your profile.
 
-Since an external web-service to create the JSON resume, you may want to keep only the required data in the archive.
+Since an external web-service is used to create the JSON resume, you may want to keep only the required data in the archive.
 
-A bash script `clean_zip.sh` provided here can be used to create a copy of the archive with only  the necessary data for the resume.
+A bash script `clean_zip.sh` provided here can be used to create a copy of the archive with only the necessary data for the resume.
 ```
 ./clean_zip.sh ~/Download/Basic_LinkedInDataExport_02-19-2020.zip
 ```
@@ -76,12 +77,17 @@ Prerequistes: JSON resume is available
 
 === Create Virtual Environment and Install Requirements
 
+To create a python3 virtual environment and the python dependencies, run the following commands
 ```
 python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt
 ```
 
+=== Add image
+
+Replace the file `img/profile.jpg` with your profile image.
+
 === Run `generate.py` script
-When you have the JSON resume ready, run the `generate.py` script
+Run the `generate.py` script with the JSON resume file path as the argument
 
 ```
 ./generate.py resume.json
@@ -102,7 +108,7 @@ Open the `index.html` file in a browser and verify how it renders.
 
 WARNING: Do not select **initialize the repository with README**, nor add any license or `.gitignore` file
 
-* Add the GitHub repository as the remote origin
+* In the current working directory, add the newly created GitHub repository as the remote origin
 ```
 git remote remove origin && git remote add origin git@github.com:<username>.github.io
 ```
@@ -112,7 +118,8 @@ git remote remove origin && git remote add origin git@github.com:<username>.gith
 git push origin master
 ```
 
+* Goto https://<username>.github.io and check if you can access your resume.
 
 === Pitfalls
 
-In most cases it is the JSON resume structure. Manually examine it and edit it such that it confirms to https://jsonresume.org/schema/
+In most cases it is the structure of the file `resume.json`. Manually examine it and edit it such that it confirms to https://jsonresume.org/schema/
