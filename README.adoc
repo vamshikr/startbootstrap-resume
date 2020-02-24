@@ -62,11 +62,9 @@ A bash script `clean_zip.sh` provided here can be used to create a copy of the a
 ./clean_zip.sh ~/Download/Basic_LinkedInDataExport_02-19-2020.zip
 ```
 
-WARNING: The `clean_zip.sh` script will delete the extra personal data from the archive, so please make a copy of the archive before running it
-
 === Generate JSON resume
 
-* Goto https://jmperezperez.com/linkedin-to-json-resume/[LinkedIn to Json Résumé]
+* Goto https://jmperezperez.com/linkedin-to-json-resume/
 
 * Upload the `zip` archive with your LinkedIn data
 
