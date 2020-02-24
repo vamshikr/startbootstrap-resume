@@ -10,7 +10,7 @@ After you download your personal information from LinkedIn, it is converted to a
 
 Once the resume is in the JSON format, the script provided here uses a https://jinja.palletsprojects.com/en/2.11.x/[Jinja2] template and your JSON resume to generate a HTML page that looks similar to https://startbootstrap.com/previews/resume/.
 
-The generated HTML file along with other files has to added to your https://pages.github.io repository
+The generated HTML file along with other files have to be added to your https://pages.github.io repository
 
 
 == Prerequistes
