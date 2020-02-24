@@ -71,9 +71,9 @@ A bash script `clean_zip.sh` provided here can be used to create a copy of the a
 * Save the generated JSON file in the current working directory as `resume.json`
 
 == Generate HTML
-Prerequistes: JSON resume is available
+Prerequistes: Your JSON resume
 
-=== Create Virtual Environment and Install Requirements
+=== Create Python3 Virtual Environment and Install Requirements
 
 To create a python3 virtual environment and the python dependencies, run the following commands
 ```
