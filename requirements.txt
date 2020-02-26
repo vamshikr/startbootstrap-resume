@@ -1,4 +1,4 @@
-colander==1.4
+colander==1.7.0
 iso8601==0.1.12
 Jinja2==2.11.1
 jsonresume-validator==0.1.5
